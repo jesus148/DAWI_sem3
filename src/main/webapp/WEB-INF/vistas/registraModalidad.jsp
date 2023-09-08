@@ -38,7 +38,7 @@
 					<label class="control-label" for="id_deporte">Deporte</label>
 					<select id="id_deporte" name="deporte.idDeporte" class='form-control'>
 						<option value=" ">[Seleccione]</option>    
-					</select>
+					</select>		
 			    </div>
 			    <div class="form-group col-md-3">
 					<label class="control-label" for="id_sede">Sede</label>
@@ -66,11 +66,19 @@
 
 <script type="text/javascript">
 
+
+
+//eso se carga automaticamente al inciar el jsp o al entrar aqui 
 $.getJSON("listaDeporte", {}, function(data){
 	$.each(data, function(index,item){
 		$("#id_deporte").append("<option value="+item.idDeporte +">"+ item.nombre +"</option>");
 	});
 });
+
+
+
+
+
 
 $("#id_registrar").click(function (){ 
 
@@ -122,7 +130,13 @@ $('#id_form').bootstrapValidator({
                 	message:'El nombre es de 5 a 100 caracteres',
                 	min : 5,
                 	max : 100
-                }
+                },
+                //esto es el controller pa buscar el nombre
+                remote :{
+            	    delay: 1000,
+            	 	url: 'buscaPorNombreModalidad',
+            	 	message: 'El Nombre ya existe'
+             	}
             }
         },
         numHombres: {
