@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.util.CollectionUtils;
 
-import com.empresa.entity.Modalidad;
+
 import com.empresa.entity.Proveedor;
 import com.empresa.entity.Tipo;
-import com.empresa.service.ModalidadService;
+
 import com.empresa.service.ProveedorService;
 import com.empresa.service.TipoService;
 
@@ -26,12 +26,13 @@ public class RegistraProveedorController {
 	
 	
 	
-	
+	//para el combo
 	@Autowired
 	private TipoService tipoService;
 	
 	
 	
+	//para registrar
 	@Autowired
 	private ProveedorService proveedorService;
 	
@@ -40,7 +41,7 @@ public class RegistraProveedorController {
 	
 	
 	
-	
+	//muestra el jsp regsitra proveedor
 	@GetMapping(value = "/verRegistraProveedor" )
 	public String verAlumno() {
 		return "registraProveedor";
@@ -48,6 +49,8 @@ public class RegistraProveedorController {
 	
 	
 	
+	
+	//carga el combo ejecuta el metodo y retorna la lista
 	
 	@GetMapping(value = "/listaTipo")
 	@ResponseBody
@@ -59,10 +62,13 @@ public class RegistraProveedorController {
 	
 	
 
-	@PostMapping("/registraProvedor")
+	//PARA REGISTRAR
+	@PostMapping("/registraProveedor")
 	@ResponseBody
 	public Map<?, ?> registra(Proveedor obj) {
 		HashMap<String, String> map = new HashMap<String, String>();
+		
+		//le agregamos la fecha al dato obtenido desde el jsp
 		obj.setFechaRegistro(new Date());
 		
 		Proveedor objSalida = proveedorService.insertaProveedor(obj);
@@ -79,17 +85,18 @@ public class RegistraProveedorController {
 	
 
 	
+	//PARA BUSCAR Y VERIFICAR QUE NO SE REPITAN LOS NOMBRE DE PROVEEDORES 
 	@GetMapping("/buscaPorProveedor")
 	@ResponseBody
 	public String validaNombre(String nombre) {
 		//pregunta si lo encuentra
-		List<Proveedor > lstModalidad = proveedorService.buscarPorNombre(nombre);
+		List<Proveedor> lstModalidad = proveedorService.buscarPorNombre(nombre);
 		
-		//si esta vacio y no lo encuentra ese nombre then sale true
+		//si esta vacio y no lo encuentra ese nombre then sale true ,esta listo pa registrar
 		if (CollectionUtils.isEmpty(lstModalidad)) {
-			return "{\"valid\" : true }";
+			return "{\"valid\" : true }";  //retorna true listo para registrar
 		} else {
-			return "{\"valid\" : false }";
+			return "{\"valid\" : false }"; //retorna false ya se encuentra
 		}
 	}
 	

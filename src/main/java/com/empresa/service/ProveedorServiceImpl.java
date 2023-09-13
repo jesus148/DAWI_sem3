@@ -15,7 +15,7 @@ public class ProveedorServiceImpl implements ProveedorService {
 
 	
 	
-	
+	 //CONEXION AL REPOSITORIO
 
 	@Autowired
 	private ProveedorRepository repository;
@@ -24,6 +24,12 @@ public class ProveedorServiceImpl implements ProveedorService {
 	
 	
 	
+	//METODOS DE LA INTERFACE
+	
+	
+	
+	
+	//metodo para insertar y del repo elige el metodo
 	@Override
 	public Proveedor insertaProveedor(Proveedor obj) {
 		return repository.save(obj);
@@ -34,6 +40,8 @@ public class ProveedorServiceImpl implements ProveedorService {
 
 
 
+	
+	//metodo para buscar y no repetir proveedor
 	@Override
 	public List<Proveedor> buscarPorNombre(String nombre) {
 		

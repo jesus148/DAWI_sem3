@@ -14,9 +14,15 @@ import com.empresa.repository.TipoRepository;
 @Service
 public class TipoServiceImpl implements TipoService{
 
+	
+	
+	//relaciona con el repository
 	@Autowired
 	private TipoRepository repository;
 
+	
+	
+	//del repo elige que metodo usar 
 	@Override
 	public List<Tipo> listaTipo() {
 	

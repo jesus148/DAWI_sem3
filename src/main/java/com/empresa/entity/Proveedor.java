@@ -30,6 +30,8 @@ public class Proveedor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idProveedor;
+	private String nombre;
+	private String dni;
 	
 
 	
@@ -38,6 +40,10 @@ public class Proveedor {
 	private Date  fechaRegistro;
 
 	
+	
+	//PARA EL COMBO 
+	//join column : especifica la columna
+	//@ManyToOne : indicar la relacion
 	
 	@ManyToOne
 	@JoinColumn(name = "idTipo")
